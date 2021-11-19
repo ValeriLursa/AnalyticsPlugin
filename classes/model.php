@@ -119,7 +119,7 @@ class Progress
         $this->grade = $grade;
     }
 
-    function set_date_fact(array $mas){
+    function update_date_fact(array $mas){
         foreach ($mas as $type => $value)
         $this->date_fact[$type] = $value;
     }
