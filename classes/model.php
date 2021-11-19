@@ -52,7 +52,7 @@ class Element
     private $name = 'name';
     private $date_start = ["day" => 1,"month" => 1,"year" => 2021];
     private $date_end = ["day" => 1,"month" => 1,"year" => 2021];
-    private $date_rezerv = 1;
+    private $date_reserve = 1;
 
     function __construct(int $id, string $name){
         $this->id = $id;
@@ -66,11 +66,11 @@ class Element
 
     function set_date_end(array $mas){
         foreach ($mas as $type => $value)
-        $this->sate_end[$type] = $value;
+        $this->date_end[$type] = $value;
     }
 
-    function set_date_rezerv(int $date){
-        $this->date_rezerv = $date;
+    function set_date_reserve(int $date){
+        $this->date_reserve = $date;
     }
 }
 
@@ -99,14 +99,15 @@ grade - общая оценка теста
 - идентификатор курса типа int
 - идентификатор теста типа int
 
-- оценка типа float
+- оценка типа int
 */
 class Progress
 {
     private $id_stud = 1;
     private $id_course = 1;
     private $id_test = 1;
-    private $grade = 0.00;
+    private $grade = 0;
+    private $date_fact = ["day" => 1,"month" => 1,"year" => 2021];
 
     function __construct(int $id_stud, int $id_course, int $id_test){
         $this->id_stud = $id_stud;
@@ -116,6 +117,11 @@ class Progress
 
     function update_progress(int $grade){
         $this->grade = $grade;
+    }
+
+    function set_date_fact(array $mas){
+        foreach ($mas as $type => $value)
+        $this->date_fact[$type] = $value;
     }
 }
 ?>
