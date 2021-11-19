@@ -1,24 +1,30 @@
-<?php
-/*Веб-интерфейс просмотра всех доступных экземпляров данного элемента курса
-*/
-require('../../config.php');
-require_once(__DIR__.'/../../config.php');
-//require (__DIR__.'/../../../config.php'); Выдает ошибку JS
-echo 'Веб-интерфейс просмотра всех доступных экземпляров данного элемента';
-/*$viewDb = $DB -> get_recordset ( 'mdl_user' ,  array  $conditions = null ,  $sort = '' ,  $fields = '*' ,  $limitfrom = 0 ,  $limitnum = 0 );
-if ($viewDb->valid()){
-foreach ($viewDb as $record){
-        echo $record;
-}
-} else echo 'Ошибка';
-$viewDb->close();
-*/
-$title = 'Плагин';
-$PAGE->set_url(new moodle_url('/mod/AnalyticsPlugin/index.php'));
-$PAGE->set_title($title);
-$PAGE->set_heading($title);
-
-echo $OUTPUT->header();
-echo $OUTPUT->heading($title);
-//echo $controller->render_preview($PAGE);
-echo $OUTPUT->footer();
+<!DOCTYPE html>
+<html>
+<head>
+<title>METANIT.COM</title>
+<meta charset="utf-8" />
+</head>
+<body>
+<h3>Форма ввода данных</h3>
+<form action="controller.php" method="POST">
+    <p>Дата начала курса: <input type="number" name="course[]" /></p>
+    <p></p>
+    <p>Дата начала теста 1: <input type="number" name="test_course_start[]" /></p>
+    <p>Дата фактического прохождения теста 1: <input type="number" name="test_course_fact[]" /></p>
+    <p>Результат теста 1: <input type="number" name="grad_test[]" /></p>
+    <p>Дата конца теста 1: <input type="number" name="test_course_end[]" /></p>
+    <p></p>
+    <p>Дата начала теста 2: <input type="number" name="test_course_start[]" /></p>
+    <p>Дата фактического прохождения теста 2: <input type="number" name="test_course_fact[]" /></p>
+    <p>Результат теста 2: <input type="number" name="grad_test[]" /></p>
+    <p>Дата конца теста 2: <input type="number" name="test_course_end[]" /></p>
+    <p></p>
+    <p>Дата начала теста 3: <input type="number" name="test_course_start[]" /></p>
+    <p>Дата фактического прохождения теста 3: <input type="number" name="test_course_fact[]" /></p>
+    <p>Результат теста 3: <input type="number" name="grad_test[]" /></p>
+    <p>Дата конца теста 3: <input type="number" name="test_course_end[]" /></p>
+    <p>Дата конца курса: <input type="number" name="course[]" /></p>
+    <input type="submit" value="Результат по одному курсу">
+</form>
+</body>
+</html>
