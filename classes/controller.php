@@ -2,23 +2,9 @@
 //Контроллер конструкции MVC
 namespace analytics;
 include "model.php";
-
-/*глобальные переменные
-$STUDENT - массив студентов
-$COURSE - массив курсов
-$TEST_COURSE - массив тестов
-$PROGRESS - массив прогрессов
-$SELECT - индекс входных данных
-$SELECT_EDUCATION - инедкс обучения алгоритма (1 - нет старых данных, 2 - есть старые данные)
-*/
-$STUDENT;
-$COURSE;
-$TEST_COURSE;
-$PROGRESS;
-$SELECT = 2;
-$SELECT_EDUCATION = 0;
-
-
+include "global_variables.php";
+include "controller_dates.php";
+include "controller_grade.php";
 
 //Выбор входящих данных
 function switch_date(){
@@ -44,9 +30,9 @@ function date_prog(){
 //Ввод данных с формы
 if (data_checking()) {
     //добавление даты начала курса по номеру курса
-    global $COURSE[0]->set_date_start(convert_string_mas($_POST["course"][0]));
+    //global $COURSE[0]->set_date_start(convert_string_mas($_POST["course"][0]));
     //добавление даты конца курса по номеру курса
-    global $COURSE[0]->set_date_end(convert_string_mas($_POST["course"][1]));
+    //global $COURSE[0]->set_date_end(convert_string_mas($_POST["course"][1]));
 
     for ($i = 0; $i < 3; $i++){
     //добавление даты начала теста по номеру теста
@@ -80,13 +66,21 @@ function convert_string_mas($string){
 }
 
 //Алгоритм успеваемости
-function algorithm(){
+function algorithm($id_course){
     //расчет коэфициентов успеваемости
+    $coef_grade = 0;
+    $coef_reserve = 0;
+    $coef_progress = 0;
     
+    coef_grade_course($PROGRESS, $TEST_COURSE, $id_course);
+    //расчет процента даты сдачи
+    //расчет коэффициента даты сдачи
 }
 
+
+
 //расчет коэфициентов успеваемости: коэффициент оценки + коэффициент резерва
-//максимум 200, минимум 0
+//максимум 4, минимум 1
 function algorithm_grade_reserve($date_end, $date_fact, $reserve, $grad, $max_grad){
     $dfm = $date_fact["month"];
     $dfd = $date_fact["day"];
@@ -106,47 +100,5 @@ function algorithm_grade_reserve($date_end, $date_fact, $reserve, $grad, $max_gr
     $result = algorithm_grade($grad, $max_grad) + algorithm_reserve($date_end, $date_fact, $reserve);
     
     return $result;
-}
-
-//расчет коэффициента оценки
-//возвращает коэффициент
-function algorithm_grade($grad, $max_grad){
-    $result = round($grad*100/$max_grad);
-    return $result;
-}
-
-//расчет коэффициента резерва
-//возвращает коэффициент
-function algorithm_reserve($date_end, $date_fact, $reserve){
-    $result = 0;
-    $dif = checking_dates($date_end, $date_fact);
-    if ($dif < $reserve){
-        $result = 100 - round(100/($reserve + 1)*$dif);
-    }
-    return $result;
-}
-
-//проверка дат
-//подсчет сколько дней прошло между окончанием даты сдачи и между фактической датой сдачи
-//возвращает разницу 
-function checking_dates(array $date_end, array $date_fact){
-    $result = 0;
-    if ($date_fact["month"]!= $date_end["month"]){
-        $result = convert_month_day($date_end["month"]) - $date_end["day"];
-        for ($i = $date_fact["month"] - 1; $i < $date_end["month"]; $i--){
-            $result += convert_month_day($i);
-        } 
-        $result += $date_fact["day"];
-    }
-    else $result = $date_fact["day"] - $date_end["day"];
-    return $result;
-}
-
-//конвертирование месяца в дни
-function convert_month_day($month){
-    switch($month){
-        case 10: case 12: return 31; break;
-        case 11: return 20;
-    }
 }
 ?>
