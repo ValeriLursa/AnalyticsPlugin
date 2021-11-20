@@ -16,7 +16,7 @@ function coef_grade(int $percent_grade, int $percent_threshold){
     if ($percent_grade == 0) $result = 1; else $result = 2;
 }
 
-//Расчет процента оценки за все тесты курса
+//Расчет коэффициента оценок за все тесты курса
 function coef_grade_course($PROGRESS, $TEST_COURSE, $id_course){
     $mas_Progress = $PROGRESS;
     $mas_Test = $TEST_COURSE;
