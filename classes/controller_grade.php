@@ -1,7 +1,7 @@
 <?php
 //расчет процента оценки
 //возвращает процент
-function algorithm_grade($grad, $max_grad){
+function percent_grade($grad, $max_grad){
     $result = round($grad*100/$max_grad);
     return $result;
 }
