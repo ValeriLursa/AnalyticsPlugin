@@ -87,6 +87,8 @@ class Course extends Element
 */
 class Test_course extends Element
 {
+    //процент порогового значения, в процентах, по дефолту 50№
+    $percent_threshold = 50;
 }
 
 /*Модель успеваемости
