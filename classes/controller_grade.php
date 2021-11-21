@@ -37,12 +37,12 @@ function coef_grade_course($PROGRESS, $TEST_COURSE, $id_course){
 
     foreach ($mas_Progress as $prog){
         //проверка на курс
-        if ($prog -> $id_course == $id_course){
+        if ($prog->id_course == $id_course){
             $coef = 0;
             //расчет процента оценки теста, округляется до целого значения в большую сторону
-            $coef = round(algorithm_grade($prog -> $grad, $mas_Test[$prog -> $id_test] -> $max_grad), 0, PHP_ROUND_HALF_UP);
+            $coef = round(algorithm_grade($prog->grad, $mas_Test[$prog->id_test]->max_grad), 0, PHP_ROUND_HALF_UP);
             //расчет коэффициента оценки
-            $coef = coef_grade($coef, $mas_Test[$prog -> $id_test] -> $percent_threshold);
+            $coef = coef_grade($coef, $mas_Test[$prog->id_test]->percent_threshold);
             $coef_grade += $coef;
             $count++;
         }
