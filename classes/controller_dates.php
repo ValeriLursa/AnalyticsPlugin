@@ -15,6 +15,7 @@ function coef_reserve(int $percent_reserve){
 function algorithm_reserve($date_end, $date_fact, $reserve){
     $result = 0;
     $dif = checking_dates($date_end, $date_fact);
+    if ($dif < 0) $result = 100; else 
     if ($dif < $reserve){
         $result = 100 - round(100/($reserve + 1)*$dif);
     }
@@ -29,7 +30,7 @@ function checking_dates(array $date_end, array $date_fact){
     $result = 0;
     if ($date_fact["month"]!= $date_end["month"]){
         $result = convert_month_day($date_end["month"]) - $date_end["day"];
-        for ($i = $date_fact["month"] - 1; $i < $date_end["month"]; $i--){
+        for ($i = $date_fact["month"] - 1; $i > $date_end["month"]; $i--){
             $result += convert_month_day($i);
         } 
         $result += $date_fact["day"];
@@ -43,8 +44,9 @@ function checking_dates(array $date_end, array $date_fact){
 //возвращает количество дней в месяце
 function convert_month_day($month){
     switch($month){
-        case 10: case 12: return 31; break;
-        case 11: return 30;
+        case 1: case 3: case 5: case 7: case 8: case 10: case 12: return 31; break;
+        case 4: case 6: case 9: case 11: return 30;
+        case 2: return 28;
         default: return 0;
     }
 }
