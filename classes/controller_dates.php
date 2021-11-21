@@ -3,8 +3,18 @@
 //возвращает число
 function coef_reserve(int $percent_reserve){
     $result = 0;
-    if ($percent_reserve == 100) $result = 4;
-    if (($percent_reserve < 100) and ($percent_reserve >= 50)) $result = 3;
+    $c = 0;
+    if ($percent_reserve == 100) 
+    {
+        $result = 4;
+        $c++;
+    }
+    if (($percent_reserve < 100) and ($percent_reserve >= 50))
+    {
+        $result = 3;
+        $c++;
+    }
+    if ($c == 0)
     if ($percent_reserve == 0 ) $result = 1; else $result = 2;
     return $result;
 }
