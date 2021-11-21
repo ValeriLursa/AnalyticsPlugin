@@ -1,10 +1,10 @@
 <?php
 //Контроллер конструкции MVC
-namespace analytics;
-include "model.php";
-include "global_variables.php";
-include "controller_dates.php";
-include "controller_grade.php";
+
+require "model.php";
+require "global_variables.php";
+require "controller_dates.php";
+require "controller_grade.php";
 
 //Выбор входящих данных
 function switch_date(){
@@ -32,8 +32,9 @@ function date_prog(){
     $PROGRESS[2] = new Progress(0, 0, 2);
 }
 
+
 //Ввод данных с формы
-if (data_checking()) {
+/*if (data_checking()) {
     //добавление даты начала курса по номеру курса
     //global $COURSE[0]->set_date_start(convert_string_mas($_POST["course"][0]));
     //добавление даты конца курса по номеру курса
@@ -43,7 +44,7 @@ if (data_checking()) {
 
     for ($i = 0; $i < 3; $i++){
     //добавление даты начала теста по номеру теста
-    $TEST_COURSE[$i]->set_date_end(convert_string_mas($_POST["test_course_start"][$i]));
+    $TEST_COURSE[$i]->set_date_start(convert_string_mas($_POST["test_course_start"][$i]));
     //добавление даты конца теста по номеру теста
     $TEST_COURSE[$i]->set_date_end(convert_string_mas($_POST["test_course_end"][$i]));
     //доавление оценки
@@ -52,7 +53,7 @@ if (data_checking()) {
     $PROGRESS[$i]->update_date_fact($_POST["test_course_fact"][$i]);
     }
 
-}
+}*/
 
 //проверка входных данных формы
 function data_checking(){
@@ -63,25 +64,51 @@ function data_checking(){
 function convert_string_mas($string){
     $mas = ["day" => 1, "month" => 1, "year" => 1];
     $point = ".";
-    $string[] = $point;
+    $string = $string.$point;
     $start = 0;
     foreach ($mas as $type => $value){
         $position = mb_strpos($string, $point);
-        $value = mb_substr($string, $start, $position);
+        $mas[$type] = mb_substr($string, $start, $position);
         $string = mb_substr($string, $position + 1);
     }
+    return $mas;
 }
 
 //Алгоритм успеваемости
 function algorithm($id_course){
     //расчет коэфициентов успеваемости
-    $coef_grade = 0;
-    $coef_reserve = 0;
-    $coef_progress = 0;
-    
-    coef_grade_course($PROGRESS, $TEST_COURSE, $id_course);
-    //расчет процента даты сдачи
-    //расчет коэффициента даты сдачи
+    GLOBAL $COEF_PROGRESS;
+    $COEF_PROGRESS = round(($COEF_GRADE + $COEF_DATE)/2, 0, PHP_ROUND_HALF_UP);
+    switch($COEF_GRADE){
+        case 4: return "Студент всегда сдает вовремя или сдает практически сразу после окончания время сдачи теста и сдает на балл, близкий к максимуму или равеный ему"; break;
+        case 3: return "Студент иногда сдает тесты не вовремя и сдает на балл, между максимумом и порогом"; break;
+        case 2: return "Студент не всегда сдает тесты вовремя и сдает на балл, близкикий к порогу"; break;
+        case 1: return "Студент не сдает тесты вовремя и сдает на баллы, ниже проходного"; break;
+    }
+}
+
+//Алгоритм оценок
+function alg_grade($id_course){
+    global $COEF_GRADE;
+    $COEF_GRADE = coef_grade_course($PROGRESS, $TEST_COURSE, $id_course);
+    switch($COEF_GRADE){
+        case 4: return "Студент занимается и проходит тесты на балл выше порога"; break;
+        case 3: return "Студент часто сдает тесты на балл, близкий к порогу, или на балл, ниже порога"; break;
+        case 2: return "Студент часто не проходит порог теста"; break;
+        case 1: return "Студент сдает тесты на балл, ниже порога теста"; break;
+    }
+}
+
+//Алгоритм дат
+function alg_dates($id_course){
+    global $COEF_DATE;
+    $COEF_DATE = coef_date_course();
+    switch($COEF_DATE){
+        case 4: return "Студент всегда сдает вовремя"; break;
+        case 3: return "Студент не всегда сдает вовремя"; break;
+        case 2: return "Студент часто не сдает вовремя"; break;
+        case 1: return "Студент не сдает тесты вовремя"; break;
+    }
 }
 
 //расчет коэфициентов успеваемости: коэффициент оценки + коэффициент резерва
@@ -106,4 +133,7 @@ function algorithm_grade_reserve($date_end, $date_fact, $reserve, $grad, $max_gr
     
     return $result;
 }
+
+//вывод результата на форму
+
 ?>
