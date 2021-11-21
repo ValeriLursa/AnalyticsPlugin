@@ -77,8 +77,6 @@ function algorithm($id_course){
     //расчет коэффициента даты сдачи
 }
 
-
-
 //расчет коэфициентов успеваемости: коэффициент оценки + коэффициент резерва
 //максимум 4, минимум 1
 function algorithm_grade_reserve($date_end, $date_fact, $reserve, $grad, $max_grad){
