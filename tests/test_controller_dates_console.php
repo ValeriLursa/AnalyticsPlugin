@@ -175,7 +175,7 @@
     {
         print "Тест 20: ";
         $function_under_test = algorithm_reserve(["day"=>20, "month"=>8, "year"=>2021], ["day"=>31, "month"=>12, "year"=>2021], 10);
-        if ($function_under_test == 4) print "true</br>"; else print $function_under_test."</br>";
+        if ($function_under_test == 0) print "true</br>"; else print $function_under_test."</br>";
     }
     
     /* расчет коэффициента резерва - Test 21
