@@ -10,10 +10,20 @@ function percent_grade($grad, $max_grad){
 //возвращает число коэффициента
 function coef_grade(int $percent_grade, int $percent_threshold){
     $result = 0;
-    if ($percent_grade == 100) $result = 4;
+    $c = 0;
+    if ($percent_grade == 100) 
+    {
+        $result = 4;
+        $c = 1;
+    }
     if (($percent_grade < 100) and ($percent_grade >= $percent_threshold))
-    $result = 3;
+    {
+        $result = 3;
+        $c = 1;
+    }
+    if ($c == 0)
     if ($percent_grade == 0) $result = 1; else $result = 2;
+    return $result;
 }
 
 //Расчет коэффициента оценок за все тесты курса
