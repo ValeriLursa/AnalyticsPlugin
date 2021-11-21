@@ -19,6 +19,10 @@
     test_algorithm_reserve_test2();
     test_algorithm_reserve_test3();
     test_algorithm_reserve_test4();
+    test_coef_reserve_test1();
+    test_coef_reserve_test2();
+    test_coef_reserve_test3();
+    test_coef_reserve_test4();
 
     /* проверка оценки - Test 10
     входные данные:
@@ -171,7 +175,58 @@
     {
         print "Тест 20: ";
         $function_under_test = algorithm_reserve(["day"=>20, "month"=>8, "year"=>2021], ["day"=>31, "month"=>12, "year"=>2021], 10);
-        if ($function_under_test == 0) print "true</br>"; else print $function_under_test."</br>";
+        if ($function_under_test == 4) print "true</br>"; else print $function_under_test."</br>";
     }
     
+    /* расчет коэффициента резерва - Test 21
+    входные данные:
+    - процент резерва - 100
+    предполагаемый резльтат:
+    - функция вернет - 4
+    */
+    function test_coef_reserve_test1()
+    {
+        print "Тест 21: ";
+        $function_under_test = coef_reserve(100);
+        if ($function_under_test == 4) print "true</br>"; else print $function_under_test."</br>";
+    }
+
+    /* расчет коэффициента резерва - Test 22
+    входные данные:
+    - процент резерва - 57
+    предполагаемый резльтат:
+    - функция вернет - 3
+    */
+    function test_coef_reserve_test2()
+    {
+        print "Тест 22: ";
+        $function_under_test = coef_reserve(57);
+        if ($function_under_test == 3) print "true</br>"; else print $function_under_test."</br>";
+    }
+
+    /* расчет коэффициента резерва - Test 23
+    входные данные:
+    - процент резерва - 30
+    предполагаемый резльтат:
+    - функция вернет - 2
+    */
+    function test_coef_reserve_test3()
+    {
+        print "Тест 23: ";
+        $function_under_test = coef_reserve(30);
+        if ($function_under_test == 2) print "true</br>"; else print $function_under_test."</br>";
+    }
+
+    /* расчет коэффициента резерва - Test 24
+    входные данные:
+    - процент резерва - 0
+    предполагаемый резльтат:
+    - функция вернет - 1
+    */
+    function test_coef_reserve_test4()
+    {
+        print "Тест 24: ";
+        $function_under_test = coef_reserve(0);
+        if ($function_under_test == 1) print "true</br>"; else print $function_under_test."</br>";
+    }
 ?>
