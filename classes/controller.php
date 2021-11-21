@@ -9,14 +9,17 @@ require "controller_grade.php";
 //Выбор входящих данных
 function switch_date(){
     global $SELECT;
+    $a = 0;
     switch ($SELECT){
         case 1: date_BD(); break; //не реализована
-        case 2: date_prog(); break;
+        case 2: date_prog() ? $a = 1 : $a = 2; break;
     }
+    return $a;
 }
 
 //Ввод данных из программы
 function date_prog(){
+    
     global $STUDENT;
     global $COURSE;
     global $TEST_COURSE;
@@ -30,17 +33,11 @@ function date_prog(){
     $PROGRESS[0] = new Progress(0, 0, 0);
     $PROGRESS[1] = new Progress(0, 0, 1);
     $PROGRESS[2] = new Progress(0, 0, 2);
-}
 
-
-//Ввод данных с формы
-/*if (data_checking()) {
     //добавление даты начала курса по номеру курса
     //global $COURSE[0]->set_date_start(convert_string_mas($_POST["course"][0]));
     //добавление даты конца курса по номеру курса
     //global $COURSE[0]->set_date_end(convert_string_mas($_POST["course"][1]));
-    global $TEST_COURSE;
-    global $PROGRESS;
 
     for ($i = 0; $i < 3; $i++){
     //добавление даты начала теста по номеру теста
@@ -50,7 +47,15 @@ function date_prog(){
     //доавление оценки
     $PROGRESS[$i]->update_progress($_POST["grad_test"][$i]);
     //добавление фактической даты прохождения теста
-    $PROGRESS[$i]->update_date_fact($_POST["test_course_fact"][$i]);
+    $PROGRESS[$i]->update_date_fact(convert_string_mas($_POST["test_course_fact"][$i]));
+    }
+    return true;
+}
+
+
+//Ввод данных с формы
+/*if (data_checking()) {
+    
     }
 
 }*/
