@@ -17,14 +17,19 @@ function switch_date(){
 
 //Ввод данных из программы
 function date_prog(){
-    global $STUDENT[0] = new Student(0, 'Студент1');
-    global $COURSE[0] = new Course(0, 'Курс1');
-    global $TEST_COURSE[0] = new Test_course(0, 'Тест1');
-    global $TEST_COURSE[1] = new Test_course(1, 'Тест2');
-    global $TEST_COURSE[2] = new Test_course(2, 'Тест3');
-    global $PROGRESS[0] = new Progress(0, 0, 0);
-    global $PROGRESS[1] = new Progress(0, 0, 1);
-    global $PROGRESS[2] = new Progress(0, 0, 2);
+    global $STUDENT;
+    global $COURSE;
+    global $TEST_COURSE;
+    global $PROGRESS;
+
+    $STUDENT[0] = new Student(0, 'Студент1');
+    $COURSE[0] = new Course(0, 'Курс1');
+    $TEST_COURSE[0] = new Test_course(0, 'Тест1');
+    $TEST_COURSE[1] = new Test_course(1, 'Тест2');
+    $TEST_COURSE[2] = new Test_course(2, 'Тест3');
+    $PROGRESS[0] = new Progress(0, 0, 0);
+    $PROGRESS[1] = new Progress(0, 0, 1);
+    $PROGRESS[2] = new Progress(0, 0, 2);
 }
 
 //Ввод данных с формы
@@ -33,22 +38,24 @@ if (data_checking()) {
     //global $COURSE[0]->set_date_start(convert_string_mas($_POST["course"][0]));
     //добавление даты конца курса по номеру курса
     //global $COURSE[0]->set_date_end(convert_string_mas($_POST["course"][1]));
+    global $TEST_COURSE;
+    global $PROGRESS;
 
     for ($i = 0; $i < 3; $i++){
     //добавление даты начала теста по номеру теста
-    global $TEST_COURSE[$i]->set_date_end(convert_string_mas($_POST["test_course_start"][$i]));
+    $TEST_COURSE[$i]->set_date_end(convert_string_mas($_POST["test_course_start"][$i]));
     //добавление даты конца теста по номеру теста
-    global $TEST_COURSE[$i]->set_date_end(convert_string_mas($_POST["test_course_end"][$i]));
+    $TEST_COURSE[$i]->set_date_end(convert_string_mas($_POST["test_course_end"][$i]));
     //доавление оценки
-    global $PROGRESS[$i]->update_progress($_POST["grad_test"][$i]);
+    $PROGRESS[$i]->update_progress($_POST["grad_test"][$i]);
     //добавление фактической даты прохождения теста
-    global $PROGRESS[$i]->update_date_fact($_POST["test_course_fact"][$i]);
+    $PROGRESS[$i]->update_date_fact($_POST["test_course_fact"][$i]);
     }
 
 }
 
 //проверка входных данных формы
-function data checking(){
+function data_checking(){
     return true;
 }
 
