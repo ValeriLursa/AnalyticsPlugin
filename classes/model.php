@@ -1,6 +1,5 @@
 <?php
 //Модели уонструкции MVC
-namespace analytics;
 
 /*Модель пользователя, частный случай - студент (Student)
 Поля:
@@ -13,8 +12,8 @@ name - имя пользователя
 */
 class User
 {
-    private $id = 1;
-    private $name = 'name';
+    public $id = 1;
+    public $name = 'name';
 
     function __construct(int $id, string $name)
     {
@@ -48,11 +47,11 @@ date_rezerv - дата резервного окончания элемента,
 
 class Element
 {
-    private $id = 1;
-    private $name = 'name';
-    private $date_start = ["day" => 1,"month" => 1,"year" => 2021];
-    private $date_end = ["day" => 1,"month" => 1,"year" => 2021];
-    private $date_reserve = 1;
+    public $id = 1;
+    public $name = 'name';
+    public $date_start = ["day" => 1,"month" => 1,"year" => 2021];
+    public $date_end = ["day" => 1,"month" => 1,"year" => 2021];
+    public $date_reserve = 10;
 
     function __construct(int $id, string $name){
         $this->id = $id;
@@ -88,9 +87,9 @@ class Course extends Element
 class Test_course extends Element
 {
     //процент порогового значения, в процентах, по дефолту 50№
-    private $percent_threshold = 50;
+    public $percent_threshold = 50;
     //максимальное значение оценки за тест, по дефолту 10
-    private $max_grad = 10;
+    public $max_grad = 10;
 }
 
 /*Модель успеваемости
@@ -107,11 +106,11 @@ grade - общая оценка теста
 */
 class Progress
 {
-    private $id_stud = 1;
-    private $id_course = 1;
-    private $id_test = 1;
-    private $grade = 0;
-    private $date_fact = ["day" => 1,"month" => 1,"year" => 2021];
+    public $id_stud = 1;
+    public $id_course = 1;
+    public $id_test = 1;
+    public $grade = 0;
+    public $date_fact = ["day" => 1,"month" => 1,"year" => 2021];
 
     function __construct(int $id_stud, int $id_course, int $id_test){
         $this->id_stud = $id_stud;
