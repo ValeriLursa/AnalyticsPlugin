@@ -1,6 +1,16 @@
 <?php
     require "classes\\controller_grade.php";
-
+    
+    //вызов тестовых функций
+    test_percent_grade_test1();
+    test_percent_grade_test2();
+    test_percent_grade_test3();
+    test_percent_grade_test4();
+    test_coef_grade_test1();
+    test_coef_grade_test2();
+    test_coef_grade_test3();
+    test_coef_grade_test4();
+    
     function test_true(){
         print "Тест 1: ";
         $p = true;
