@@ -1,4 +1,3 @@
 <?php
-//Веб-инетрфейс отображения плагина в режиме использования на страницу курса
-require('../../config.php');
-echo 'Привет из view';
+    require "classes\\controller.php";
+?>
