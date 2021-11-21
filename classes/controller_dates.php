@@ -60,4 +60,32 @@ function convert_month_day($month){
         default: return 0;
     }
 }
+
+//Расчет коэффициента дат всех тестов за курс
+function coef_date_course($PROGRESS, $TEST_COURSE, $id_course)
+{
+    $mas_Progress = $PROGRESS;
+    $mas_Test = $TEST_COURSE;
+    //сумма всех коэффициентов оценок
+    $coef_date = 0;
+    //количество тестов в курсе
+    $count = 0;
+
+    foreach ($mas_Progress as $prog){
+        //проверка на курс
+        if ($prog -> $id_course == $id_course){
+            $coef = 0;
+            //расчет процента дней теста, округляется до целого значения в большую сторону
+            $coef = round(algorithm_reserve($mas_Test[$prog -> $id_test] -> $date_end, $prog->$date_fact, $mas_Test[$prog -> $id_test] -> $date_reserve), 0, PHP_ROUND_HALF_UP);
+            //расчет коэффициента оценки
+            $coef = coef_reserve($coef);
+            $coef_date += $coef;
+            $count++;
+        }
+    }
+    //расчет среднего арифметического
+    $coef_date /= $count;
+    //результат выводится округленным в большую сторону
+    return round($coef_date, 0, PHP_ROUND_HALF_UP);
+}
 ?>
