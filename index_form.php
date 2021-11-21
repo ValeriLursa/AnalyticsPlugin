@@ -6,7 +6,7 @@
 </head>
 <body>
 <h3>Форма ввода данных</h3>
-<form action="controller.php" method="POST">
+<form method="POST">
     <p>Дата начала теста 1: <input type="number" name="test_course_start[]" /></p>
     <p>Дата фактического прохождения теста 1: <input type="number" name="test_course_fact[]" /></p>
     <p>Результат теста 1: <input type="number" name="grad_test[]" /></p>
@@ -24,7 +24,11 @@
     <input type="submit" value="Результат по одному курсу">
 </form>
 <?php
-
+    require "classes\\controller.php";
+    switch_date();
+    echo "Результат анализа по оценкам: ".alg_grade(0)."</br>";
+    echo "Результат анализа по датам сдачи: ".alg_dates(0)."</br>";
+    echo "Результат общего анализа: ".algorithm(0)."</br>";
 ?>
 </body>
 </html>
