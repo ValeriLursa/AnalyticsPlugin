@@ -15,6 +15,10 @@
     test_checking_dates_test2();
     test_checking_dates_test3();
     test_checking_dates_test4();
+    test_algorithm_reserve_test1();
+    test_algorithm_reserve_test2();
+    test_algorithm_reserve_test3();
+    test_algorithm_reserve_test4();
 
     /* проверка оценки - Test 10
     входные данные:
@@ -109,4 +113,65 @@
         $function_under_test = checking_dates(["day"=>20, "month"=>8, "year"=>2021], ["day"=>31, "month"=>12, "year"=>2021]);
         if ($function_under_test == 133) print "true</br>"; else print $function_under_test."</br>";
     }
+
+    /* расчет процента резерва - Test 17
+    входные данные:
+    - дата окончания - "day"=>14, "month"=>11, "year"=>2021
+    - фактическая дата - "day"=>8, "month"=>11, "year"=>2021
+    - резервное количество дней - 10
+    предполагаемый резльтат:
+    - функция вернет - 100
+    */
+    function test_algorithm_reserve_test1()
+    {
+        print "Тест 17: ";
+        $function_under_test = algorithm_reserve(["day"=>14, "month"=>11, "year"=>2021], ["day"=>8, "month"=>11, "year"=>2021], 10);
+        if ($function_under_test == 100) print "true</br>"; else print $function_under_test."</br>";
+    }
+
+    /* расчет процента резерва - Test 18
+    входные данные:
+    - дата окончания - "day"=>14, "month"=>11, "year"=>2021
+    - фактическая дата - "day"=>19, "month"=>11, "year"=>2021
+    - резервное количество дней - 10
+    предполагаемый резльтат:
+    - функция вернет - 50
+    */
+    function test_algorithm_reserve_test2()
+    {
+        print "Тест 18: ";
+        $function_under_test = algorithm_reserve(["day"=>14, "month"=>11, "year"=>2021], ["day"=>19, "month"=>11, "year"=>2021], 10);
+        if ($function_under_test == 55) print "true</br>"; else print $function_under_test."</br>";
+    }
+
+    /* расчет процента резерва - Test 19
+    входные данные:
+    - дата окончания - "day"=>14, "month"=>10, "year"=>2021
+    - фактическая дата - "day"=>21, "month"=>10, "year"=>2021
+    - резервное количество дней - 10
+    предполагаемый резльтат:
+    - функция вернет - 37
+    */
+    function test_algorithm_reserve_test3()
+    {
+        print "Тест 19: ";
+        $function_under_test = algorithm_reserve(["day"=>14, "month"=>10, "year"=>2021], ["day"=>21, "month"=>10, "year"=>2021], 10);
+        if ($function_under_test == 36) print "true</br>"; else print $function_under_test."</br>";
+    }
+
+    /* расчет процента резерва - Test 20
+    входные данные:
+    - дата окончания - "day"=>20, "month"=>8, "year"=>2021
+    - фактическая дата - "day"=>31, "month"=>12, "year"=>2021
+    - резервное количество дней - 10
+    предполагаемый резльтат:
+    - функция вернет - 0
+    */
+    function test_algorithm_reserve_test4()
+    {
+        print "Тест 20: ";
+        $function_under_test = algorithm_reserve(["day"=>20, "month"=>8, "year"=>2021], ["day"=>31, "month"=>12, "year"=>2021], 10);
+        if ($function_under_test == 0) print "true</br>"; else print $function_under_test."</br>";
+    }
+    
 ?>
