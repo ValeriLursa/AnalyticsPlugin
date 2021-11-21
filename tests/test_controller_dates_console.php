@@ -1,6 +1,12 @@
 <?php
     require "classes\\controller_dates.php";
-
+    
+    // проверка подключения файла
+    function test_dates()
+    {
+       print "Тестирование дат:<br>";
+    }
+    test_dates();
     //вызов тестовых функций
     test_convert_month_day_test1();
     test_convert_month_day_test2();
@@ -8,6 +14,7 @@
     test_checking_dates_test1();
     test_checking_dates_test2();
     test_checking_dates_test3();
+    test_checking_dates_test4();
 
     /* проверка оценки - Test 10
     входные данные:
@@ -39,13 +46,13 @@
     входные данные:
     - номер месяца - 3
     предполагаемый резльтат:
-    - функция вернет - 0
+    - функция вернет - 31
     */
     function test_convert_month_day_test3()
     {
         print "Тест 12: ";
         $function_under_test = convert_month_day(3);
-        if ($function_under_test == 0) print "true</br>"; else print "false</br>";
+        if ($function_under_test == 31) print "true</br>"; else print "false</br>";
     }
 
     /* расчет разницы между датами - Test 13
@@ -53,39 +60,53 @@
     - дата окончания - "day"=>14, "month"=>11, "year"=>2021
     - фактическая дата - "day"=>8, "month"=>11, "year"=>2021
     предполагаемый резльтат:
-    - функция вернет - 6
+    - функция вернет - -6
     */
     function test_checking_dates_test1()
     {
         print "Тест 13: ";
         $function_under_test = checking_dates(["day"=>14, "month"=>11, "year"=>2021], ["day"=>8, "month"=>11, "year"=>2021]);
-        if ($function_under_test == 6) print "true</br>"; else print "false</br>";
+        if ($function_under_test == -6) print "true</br>"; else print $function_under_test."</br>";
     }
     
      /* расчет разницы между датами - Test 14
     входные данные:
-    - дата окончания - "day"=>14, "month"=>12, "year"=>2021
-    - фактическая дата - "day"=>8, "month"=>11, "year"=>2021
+    - дата окончания - "day"=>14, "month"=>11, "year"=>2021
+    - фактическая дата - "day"=>8, "month"=>12, "year"=>2021
     предполагаемый резльтат:
-    - функция вернет - 36
+    - функция вернет - 24
     */
     function test_checking_dates_test2()
     {
         print "Тест 14: ";
-        $function_under_test = checking_dates(["day"=>14, "month"=>12, "year"=>2021], ["day"=>8, "month"=>11, "year"=>2021]);
-        if ($function_under_test == 36) print "true</br>"; else print "false</br>";
+        $function_under_test = checking_dates(["day"=>14, "month"=>11, "year"=>2021], ["day"=>8, "month"=>12, "year"=>2021]);
+        if ($function_under_test == 24) print "true</br>"; else print "false</br>";
     }
      /* расчет разницы между датами - Test 15
     входные данные:
-    - дата окончания - "day"=>20, "month"=>12, "year"=>2021
-    - фактическая дата - "day"=>31, "month"=>10, "year"=>2021
+    - дата окончания - "day"=>20, "month"=>10, "year"=>2021
+    - фактическая дата - "day"=>31, "month"=>12, "year"=>2021
     предполагаемый резльтат:
-    - функция вернет - 6
+    - функция вернет - 72
     */
     function test_checking_dates_test3()
     {
         print "Тест 15: ";
-        $function_under_test = checking_dates(["day"=>20, "month"=>12, "year"=>2021], ["day"=>31, "month"=>10, "year"=>2021]);
-        if ($function_under_test == 50) print "true</br>"; else print "false</br>";
+        $function_under_test = checking_dates(["day"=>20, "month"=>10, "year"=>2021], ["day"=>31, "month"=>12, "year"=>2021]);
+        if ($function_under_test == 72) print "true</br>"; else print $function_under_test."</br>";
+    }
+
+    /* расчет разницы между датами - Test 16
+    входные данные:
+    - дата окончания - "day"=>20, "month"=>8, "year"=>2021
+    - фактическая дата - "day"=>31, "month"=>12, "year"=>2021
+    предполагаемый резльтат:
+    - функция вернет - 133
+    */
+    function test_checking_dates_test4()
+    {
+        print "Тест 16: ";
+        $function_under_test = checking_dates(["day"=>20, "month"=>8, "year"=>2021], ["day"=>31, "month"=>12, "year"=>2021]);
+        if ($function_under_test == 133) print "true</br>"; else print $function_under_test."</br>";
     }
 ?>
