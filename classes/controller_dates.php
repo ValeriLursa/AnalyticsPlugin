@@ -44,7 +44,8 @@ function checking_dates(array $date_end, array $date_fact){
 function convert_month_day($month){
     switch($month){
         case 10: case 12: return 31; break;
-        case 11: return 20;
+        case 11: return 30;
+        default: return 0;
     }
 }
 ?>
