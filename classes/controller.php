@@ -95,6 +95,8 @@ function algorithm($id_course){
 //Алгоритм оценок
 function alg_grade($id_course){
     global $COEF_GRADE;
+    global $PROGRESS;
+    global $TEST_COURSE;
     $COEF_GRADE = coef_grade_course($PROGRESS, $TEST_COURSE, $id_course);
     switch($COEF_GRADE){
         case 4: return "Студент занимается и проходит тесты на балл выше порога"; break;
@@ -107,7 +109,9 @@ function alg_grade($id_course){
 //Алгоритм дат
 function alg_dates($id_course){
     global $COEF_DATE;
-    $COEF_DATE = coef_date_course();
+    global $PROGRESS;
+    global $TEST_COURSE;
+    $COEF_DATE = coef_date_course($PROGRESS, $TEST_COURSE, $id_course);
     switch($COEF_DATE){
         case 4: return "Студент всегда сдает вовремя"; break;
         case 3: return "Студент не всегда сдает вовремя"; break;
