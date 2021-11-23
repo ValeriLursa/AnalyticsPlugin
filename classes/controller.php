@@ -82,10 +82,13 @@ function convert_string_mas($string){
     return $mas;
 }
 
-//Алгоритм успеваемости
+//Алгоритм общей успеваемости
 function algorithm($id_course){
     //расчет коэфициентов успеваемости
     GLOBAL $COEF_PROGRESS;
+    global $COEF_GRADE;
+    global $COEF_DATE;
+
     $COEF_PROGRESS = round(($COEF_GRADE + $COEF_DATE)/2, 0, PHP_ROUND_HALF_UP);
     switch($COEF_GRADE){
         case 4: return "Студент всегда сдает вовремя или сдает практически сразу после окончания время сдачи теста и сдает на балл, близкий к максимуму или равеный ему"; break;
