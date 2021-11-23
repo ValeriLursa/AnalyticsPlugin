@@ -101,7 +101,6 @@ function alg_grade($id_course){
     global $PROGRESS;
     global $TEST_COURSE;
     $COEF_GRADE = coef_grade_course($PROGRESS, $TEST_COURSE, $id_course);
-    return $COEF_GRADE;
     switch($COEF_GRADE){
         case 4: return "Студент занимается и проходит тесты на балл выше порога"; break;
         case 3: return "Студент часто сдает тесты на балл, близкий к порогу, или на балл, ниже порога"; break;
