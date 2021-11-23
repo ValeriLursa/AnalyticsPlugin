@@ -3,31 +3,17 @@
 
 Временное название: Анализатор успеваемости
 
-Ссылки для проектирования:
-
-Плагины по этой же теме: https://docs.moodle.org/dev/Machine_learning_backends
-
-API БД: https://docs.moodle.org/dev/Data_manipulation_API
-
-API страница: https://docs.moodle.org/dev/Page_API
-
-API навигации: https://docs.moodle.org/dev/Navigation_API
-
-Пример создания плагина для Moodle: https://dspace.susu.ru/xmlui/bitstream/handle/0001.74/16533/2017_217_sukhanovka.pdf?sequence=1
-
 ТЗ:
 Через форму подаются даты сдачи теста и оценка за тест одного студента за один курс
 Разработать алгоритм, анализирующий оценки студента, дату сдачи тестов студента за курс и вывести общий анализ успеваемости студента
 
 Входные данные:
-Дата начала курса
 {
 Дата начала теста
 Фактическая дата сдачи теста
 Оценка за тест
 Дата окончания теста
-} Тестов может быть сколько угодно, для тестирования формы без использования JS вводятся три теста
-Дата окончания курса
+} Тестов может быть сколько угодно, для тестирования формы без использования JS вводятся 3 теста
 
 Выходные данные:
 
@@ -48,3 +34,17 @@ API навигации: https://docs.moodle.org/dev/Navigation_API
 3 Студент иногда сдает тесты не вовремя и сдает на балл, между максимумом и порогом
 2 Студент не всегда сдает тесты вовремя и сдает на балл, близкикий к порогу
 1 Студент не сдает тесты вовремя и сдает на баллы, ниже проходного
+
+Ссылки для дальнейшего проектирования и расширения:
+
+Плагины по этой же теме: https://docs.moodle.org/dev/Machine_learning_backends
+
+API БД: https://docs.moodle.org/dev/Data_manipulation_API
+
+API страница: https://docs.moodle.org/dev/Page_API
+
+API навигации: https://docs.moodle.org/dev/Navigation_API
+
+Пример создания плагина для Moodle: https://dspace.susu.ru/xmlui/bitstream/handle/0001.74/16533/2017_217_sukhanovka.pdf?sequence=1
+
+MVC: https://otus.ru/nest/post/1847/#:~:text=%D0%92%D1%8B%D1%88%D0%B5%D1%83%D0%BF%D0%BE%D0%BC%D1%8F%D0%BD%D1%83%D1%82%D0%B0%D1%8F%20%D0%B0%D0%B1%D0%B1%D1%80%D0%B5%D0%B2%D0%B8%D0%B0%D1%82%D1%83%D1%80%D0%B0%20%D1%80%D0%B0%D1%81%D1%88%D0%B8%D1%84%D1%80%D0%BE%D0%B2%D1%8B%D0%B2%D0%B0%D0%B5%D1%82%D1%81%D1%8F%20%D0%BA%D0%B0%D0%BA%20Model,%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D0%BE%D0%B2%2C%20%D0%B2%D0%B7%D0%B0%D0%B8%D0%BC%D0%BE%D0%B4%D0%B5%D0%B9%D1%81%D1%82%D0%B2%D1%83%D1%8E%D1%89%D0%B8%D1%85%20%D1%81%20%D1%8D%D1%82%D0%B8%D0%BC%D0%B8%20%D0%B4%D0%B0%D0%BD%D0%BD%D1%8B%D0%BC%D0%B8.
