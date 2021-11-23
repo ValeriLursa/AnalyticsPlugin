@@ -12,7 +12,8 @@ function switch_date(){
     $a = 0;
     switch ($SELECT){
         case 1: date_BD(); break; //не реализована
-        case 2: date_prog() ? $a = 1 : $a = 2; break;
+        case 2: date_prog() ? $a = TRUE : $a = FALSE; break;
+        //case 2: return date_prog();
     }
     return $a;
 }
@@ -38,7 +39,7 @@ function date_prog(){
     //global $COURSE[0]->set_date_start(convert_string_mas($_POST["course"][0]));
     //добавление даты конца курса по номеру курса
     //global $COURSE[0]->set_date_end(convert_string_mas($_POST["course"][1]));
-
+    
     for ($i = 0; $i < 3; $i++){
     //добавление даты начала теста по номеру теста
     $TEST_COURSE[$i]->set_date_start(convert_string_mas($_POST["test_course_start"][$i]));
@@ -49,7 +50,9 @@ function date_prog(){
     //добавление фактической даты прохождения теста
     $PROGRESS[$i]->update_date_fact(convert_string_mas($_POST["test_course_fact"][$i]));
     }
-    return true;
+
+    //return true;
+    return $PROGRESS[0]->grade;
 }
 
 
@@ -98,6 +101,7 @@ function alg_grade($id_course){
     global $PROGRESS;
     global $TEST_COURSE;
     $COEF_GRADE = coef_grade_course($PROGRESS, $TEST_COURSE, $id_course);
+    return $COEF_GRADE;
     switch($COEF_GRADE){
         case 4: return "Студент занимается и проходит тесты на балл выше порога"; break;
         case 3: return "Студент часто сдает тесты на балл, близкий к порогу, или на балл, ниже порога"; break;
